@@ -1,5 +1,6 @@
 package com.yagmur.entity;
 
+import com.yagmur.utility.enums.EStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +19,9 @@ public class UserProfile {
 
     @Id
     private String id;
-    private String auth_id;
-    private String address_id;
+    private String authId;
+    private String addressId;
+    private String email;
     private String nameSurname;
     private String phone;
     private String passportNo;
@@ -28,8 +30,11 @@ public class UserProfile {
     private String couponCode;
 
     private List<Reservation> reservationList;
-    //private List<Hotel> favoriteHotels; -> favourite kısmını nasıl tutalım?
-    // private List<String>registeredPerson kısmını nasıl yapalım?
+    private List<String> favoriteHotelIds;
+    //private List<String> registeredPersons;
+
+    @Builder.Default
+    private EStatus status= EStatus.PENDING;
 
 
 

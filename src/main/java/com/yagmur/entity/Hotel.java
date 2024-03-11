@@ -18,7 +18,7 @@ public class Hotel {
     @Id
     private String id;
     private String name;
-    private String address_id;
+    private String addressId;
     private List<String> imageIdList;
     private String mainImageUrl;
 }
