@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class Reservation {
-
     @Id
     private String id;
     private String paymentId;
