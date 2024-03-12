@@ -18,7 +18,10 @@ public class Hotel {
     @Id
     private String id;
     private String name;
-    private String addressId;
-    private List<String> imageIdList;
     private String mainImageUrl;
+    //image id list null olduğu için hata alıyor ama veritabanına işliyor
+    private List<String> imageIdList;
+    private String addressId;
+    private String latitude;
+    private String longitude;
 }

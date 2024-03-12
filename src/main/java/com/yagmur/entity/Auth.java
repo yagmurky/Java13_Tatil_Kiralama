@@ -11,12 +11,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class Auth {
+public class Auth implements Serializable {
 
     @Id
     private String id;
@@ -29,4 +31,5 @@ public class Auth {
     private String activationCode= CodeGenerator.generateCode();
     @Builder.Default
     private EStatus status= EStatus.PENDING;
+
 }

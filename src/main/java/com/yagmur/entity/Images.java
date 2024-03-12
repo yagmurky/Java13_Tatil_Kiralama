@@ -13,9 +13,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class Images {
-
     @Id
     private String id;
     private String imageUrl;
     private String explanation; //bu kısmı enum değil de subcategory mantığıyla hocanınki gibi yapalım  mı
+
 }

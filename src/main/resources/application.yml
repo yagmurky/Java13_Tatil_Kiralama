@@ -9,4 +9,15 @@ spring:
             database: TatilKiralamaDB2
             username: bilgeUser
             password: bilgeUser*
+    mail:
+        username: kirazyagmur7@gmail.com #java13mailusername ismiyle ortam degiskeni olarak eklenecek
+        password: nqsuvsvwjlfptfra #java13mailpassword ismiyle ortam degiskeni olarak eklenecek.
+        host: smtp.gmail.com
+        port: 587
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
 
