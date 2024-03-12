@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TatilKiralamaApplication {
     public static void main(String[] args) {
         SpringApplication.run(TatilKiralamaApplication.class, args);
-
         /**
          * Tatile çıkanlar için kiralama uygulaması
          * 1- Mevcut bir örnek incelencek (ETSTUR) gerekli bilgiler toplanacak madde madde yazıılaccak

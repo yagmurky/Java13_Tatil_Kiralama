@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,8 +20,8 @@ public class Hotel {
     private String id;
     private String name;
     private String mainImageUrl;
-    //image id list null olduğu için hata alıyor ama veritabanına işliyor
-    private List<String> imageIdList;
+    @Builder.Default
+    private List<String> imageIdList= new ArrayList<>();
     private String addressId;
     private String latitude;
     private String longitude;

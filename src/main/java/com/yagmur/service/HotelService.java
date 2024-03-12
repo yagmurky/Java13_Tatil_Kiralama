@@ -10,6 +10,7 @@ import com.yagmur.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,6 +73,14 @@ public class HotelService {
         Room room = hotelMapper.fromRoomRequestToRoom(dto);
         roomRepository.save(room);
         return true;
+    }
+
+    public List<Hotel> findAll(){
+        return hotelRepository.findAll();
+    }
+
+    public Hotel findById(String id){
+        return hotelRepository.findById(id).get();
     }
 
 

@@ -1,12 +1,16 @@
 package com.yagmur.controller;
 
 import com.yagmur.dto.request.*;
+import com.yagmur.entity.Hotel;
 import com.yagmur.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -38,6 +42,16 @@ public class HotelController {
     @PostMapping(value = "/addRoom")
     public ResponseEntity<Boolean> addRoom(RoomRequestDto dto){
         return ResponseEntity.ok(hotelService.addRoomToHotel(dto));
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Hotel>> getAll(){
+        return ResponseEntity.ok(hotelService.findAll());
+    }
+
+    @GetMapping("/get-by-id")
+    public ResponseEntity<Hotel> getById(String id){
+        return ResponseEntity.ok(hotelService.findById(id));
     }
 
 
