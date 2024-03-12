@@ -1,13 +1,17 @@
 package com.yagmur.service;
 
+import com.yagmur.entity.Auth;
+import com.yagmur.entity.Hotel;
 import com.yagmur.entity.UserProfile;
 import com.yagmur.exception.ErrorType;
 import com.yagmur.exception.HolidayException;
 import com.yagmur.repository.UserRepository;
+import com.yagmur.utility.JwtTokenManager;
 import com.yagmur.utility.enums.EStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +19,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final HotelService hotelService;
+    private final JwtTokenManager jwtTokenManager;
 
     public Boolean createUser(UserProfile userProfile) {
         userRepository.save(userProfile);
@@ -47,5 +53,30 @@ public class UserService {
 
     public List<UserProfile> getAll() {
         return userRepository.findAll();
+    }
+
+    //find-by-token
+    public Optional<UserProfile> findByToken(String token){
+        return userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get());
+    }
+
+    public boolean addHotelToFavorites(String token, String hotelId) {
+        UserProfile userProfile = userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get()).get();
+        userProfile.getFavoriteHotelIds().add(hotelId);
+        userRepository.save(userProfile);
+        //hotel e bir puan gibi bir field ekleyip kullancı favorisine eklediğinde puan mı arttırsaqk favori hotelleri sıralamak için
+        return true;
+    }
+
+    //favori otel listesi kullanıcın
+    public List<Hotel> getFavoriteHotels(String token) {
+        UserProfile userProfile = userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get()).get();
+        List<String> favoriteHotelIds = userProfile.getFavoriteHotelIds();
+
+        List<Hotel> favoriteHotels = new ArrayList<>();
+        for (String hotelId : favoriteHotelIds) {
+            favoriteHotels.add(hotelService.findById(hotelId));
+        }
+        return favoriteHotels;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,10 +31,11 @@ public class UserProfile implements Serializable {
     private String trIdNo;
     private String couponCode;
 
-    private List<Reservation> reservationList;
-    private List<String> favoriteHotelIds;
+    @Builder.Default
+    private List<Reservation> reservationList= new ArrayList<>();
+    @Builder.Default
+    private List<String> favoriteHotelIds= new ArrayList<>();
     //private List<String> registeredPersons;
-
     @Builder.Default
     private EStatus status= EStatus.PENDING;
 

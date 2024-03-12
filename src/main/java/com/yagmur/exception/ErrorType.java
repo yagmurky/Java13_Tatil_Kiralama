@@ -17,7 +17,8 @@ public enum ErrorType {
     ACCOUNT_NOT_ACTIVATED(4214,"Giriş yapabilmek için önce hesabınızı aktifleştirin..." ,HttpStatus.BAD_REQUEST),
     LOGIN_FAILED(4214,"Kullanıcı adı ya da şifre hatalı..." ,HttpStatus.BAD_REQUEST),
     USER_ALREADY_EXISTS(4215,"Kullanıcı zaten mevcut...",HttpStatus.BAD_REQUEST),
-    HOTEL_NOT_FOUND(4216,"Otel bulunamadı..." , HttpStatus.BAD_REQUEST);
+    HOTEL_NOT_FOUND(4216,"Otel bulunamadı..." , HttpStatus.BAD_REQUEST),
+    CATEGORY_ALREADY_EXISTS(4, "Kategori zaten mevcut...", HttpStatus.BAD_REQUEST);
 
     private int code;
     private String message;

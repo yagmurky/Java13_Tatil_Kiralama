@@ -90,4 +90,6 @@ public class AuthService {
     public List<Auth> getAll(){
         return authRepository.findAll();
     }
+
+
 }

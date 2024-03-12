@@ -83,5 +83,13 @@ public class HotelService {
         return hotelRepository.findById(id).get();
     }
 
+    //add category to hotel
+    public boolean addCategoryToHotel(CategoryRequestDto dto){
+
+    }
+
+
+
+
 
 }
