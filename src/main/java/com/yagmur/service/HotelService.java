@@ -84,9 +84,7 @@ public class HotelService {
     }
 
     //add category to hotel
-    public boolean addCategoryToHotel(CategoryRequestDto dto){
 
-    }
 
 
 

@@ -6,6 +6,7 @@ import com.yagmur.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +36,21 @@ public class UserController {
     @GetMapping("/get-favorites")
     public ResponseEntity<List<Hotel>> getFavoriteHotels(String token){
         return ResponseEntity.ok(userService.getFavoriteHotels(token));
+    }
+
+    @PostMapping("/update-email")
+    public ResponseEntity<Boolean> updateEmail(String token, String email){
+        return ResponseEntity.ok(userService.updateEmail(token, email));
+    }
+
+    @PostMapping("/update-phone")
+    public ResponseEntity<Boolean> updatePhone(String token, String phone){
+        return ResponseEntity.ok(userService.updatePhone(token, phone));
+    }
+
+    @PostMapping("/update-passport")
+    public ResponseEntity<Boolean> updatePassport(String token, String passportNo, String passportExpiry){
+        return ResponseEntity.ok(userService.updatePassport(token, passportNo, passportExpiry));
     }
 
 

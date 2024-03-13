@@ -10,6 +10,7 @@ import com.yagmur.utility.JwtTokenManager;
 import com.yagmur.utility.enums.EStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,4 +80,31 @@ public class UserService {
         }
         return favoriteHotels;
     }
+
+    //update passwprd email, phone, passport bilgileri
+
+    public Boolean updateEmail(String token, String email) {
+        UserProfile userProfile = userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get()).get();
+        userProfile.setEmail(email);
+        userRepository.save(userProfile);
+        return true;
+    }
+
+    public Boolean updatePhone(String token, String phone) {
+        UserProfile userProfile = userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get()).get();
+        userProfile.setPhone(phone);
+        userRepository.save(userProfile);
+        return true;
+    }
+
+    public Boolean updatePassport(String token, String passportNo, String passportExpiry) {
+        UserProfile userProfile = userRepository.findByAuthId(jwtTokenManager.getIdFromToken(token).get()).get();
+        userProfile.setPassportNo(passportNo);
+        userProfile.setPassportExpiry(passportExpiry);
+        userRepository.save(userProfile);
+        return true;
+    }
+
+
+
 }
