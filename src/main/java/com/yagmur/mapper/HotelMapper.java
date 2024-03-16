@@ -1,13 +1,8 @@
 package com.yagmur.mapper;
 
-import com.yagmur.dto.request.FacilityFeaturesCreateRequestDto;
-import com.yagmur.dto.request.HotelCreateRequestDto;
-import com.yagmur.dto.request.ImageCreateRequestDto;
-import com.yagmur.dto.request.RoomRequestDto;
-import com.yagmur.entity.FacilityFeatures;
-import com.yagmur.entity.Hotel;
-import com.yagmur.entity.Images;
-import com.yagmur.entity.Room;
+import com.yagmur.dto.request.*;
+import com.yagmur.dto.response.GetCommentResponseDto;
+import com.yagmur.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
@@ -20,4 +15,13 @@ public interface HotelMapper {
     Images fromImageCreateRequestToImages(final ImageCreateRequestDto dto);
 
     Room fromRoomRequestToRoom(RoomRequestDto dto);
+
+    Category fromRequestDtoToCategory(CategoryRequestDto categoryRequestDto);
+
+    HotelCategory fromRequestDtoToHotelCategory(HotelCategoryRequestDto hotelCategoryRequestDto);
+    Reservation fromRequestDtoToReservation(ReservationRequestDto reservationRequestDto);
+    Payment fromRequestDtoToPayment(PaymentRequestDto paymentRequestDto);
+    Comments fromRequestDtoToComments(CommentRequestDto commentsRequestDto);
+    GetCommentResponseDto fromCommentsToGetCommentResponseDto(Comments comments);
+
 }

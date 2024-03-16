@@ -6,8 +6,10 @@ import com.yagmur.exception.ErrorType;
 import com.yagmur.exception.HolidayException;
 import com.yagmur.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +29,11 @@ public class CategoryService {
                 .parentId(categoryRequestDto.getParentId())
                 .build();
         return categoryRepository.save(category);
+    }
+
+    @Cacheable("find-all-category")
+    public List<Category> getAll(){
+        return categoryRepository.findAll();
     }
 
 

@@ -1,6 +1,10 @@
 package com.yagmur.repository;
 
+import com.yagmur.entity.Comments;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface CommentsRepository extends MongoRepository<CommentsRepository, String> {
+import java.util.List;
+
+public interface CommentsRepository extends MongoRepository<Comments, String> {
+    List<Comments> findByHotelId(String hotelId);
 }

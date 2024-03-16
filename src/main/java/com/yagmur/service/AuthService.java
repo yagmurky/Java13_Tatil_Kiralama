@@ -37,15 +37,15 @@ public class AuthService {
             throw new HolidayException(ErrorType.USER_ALREADY_EXISTS);
         }
         Auth auth = authRepository.save(authMapper.fromAuthRegisterRequestToAuth(dto));
-        mailService.sendMail(auth.getActivationCode());
+        String token = jwtTokenManager.createToken(auth.getId()).get();
+        mailService.sendMail(auth.getActivationCode(), token, dto.getEmail());
         userProfileService.createUser(UserProfile.builder()
                 .authId(auth.getId())
                 .email(auth.getEmail())
                 .phone(auth.getPhone())
                 .build());
         Objects.requireNonNull(cacheManager.getCache("find-all-auth")).clear();
-
-        return jwtTokenManager.createToken(auth.getId()).get();
+        return token;
     }
 
     public Boolean activation(AuthActivationRequestDto dto){
@@ -89,6 +89,29 @@ public class AuthService {
     @Cacheable("find-all-auth")
     public List<Auth> getAll(){
         return authRepository.findAll();
+    }
+
+
+    public Boolean updateEmail(String token, String email){
+        Optional<Auth> auth = authRepository.findById(jwtTokenManager.getIdFromToken(token).get());
+        if(auth.isEmpty())
+            throw new HolidayException(ErrorType.USER_NOT_FOUND);
+
+        auth.get().setEmail(email);
+        authRepository.save(auth.get());
+        userProfileService.updateEmail(token, email);
+        return true;
+    }
+
+    public Boolean updatePhone(String token, String phone) {
+        Optional<Auth> auth = authRepository.findById(jwtTokenManager.getIdFromToken(token).get());
+        if (auth.isEmpty())
+            throw new HolidayException(ErrorType.USER_NOT_FOUND);
+
+        auth.get().setPhone(phone);
+        authRepository.save(auth.get());
+        userProfileService.updatePhone(token, phone);
+        return true;
     }
 
 

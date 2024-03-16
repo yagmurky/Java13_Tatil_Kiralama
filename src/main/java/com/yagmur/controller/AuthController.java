@@ -21,26 +21,30 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(value = "/register")
+    @CrossOrigin("*")
     public ResponseEntity<String> register(@RequestBody @Validated AuthRegisterRequestDto authRegisterRequestDto) {
         return ResponseEntity.ok(authService.register(authRegisterRequestDto));
     }
 
-    @PostMapping("/activation")
+    @GetMapping ("/account-activation")
+    @CrossOrigin("*")
     public ResponseEntity<Boolean> activation(AuthActivationRequestDto dto) {
         return ResponseEntity.ok(authService.activation(dto));
     }
 
     @PostMapping("/login")
+    @CrossOrigin("*")
     public ResponseEntity<String> login(@RequestBody @Valid AuthLoginRequestDto dto) {
         return ResponseEntity.ok(authService.login(dto));
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete-account")
+    @CrossOrigin("*")
     public ResponseEntity<Boolean> delete(String token) {
         return ResponseEntity.ok(authService.delete(token));
     }
 
-    @GetMapping("/find-by-id")
+    @GetMapping("/find-auth-by-id")
     public ResponseEntity<Auth> getById(String id) {
         return ResponseEntity.ok(authService.findById(id).get());
     }
@@ -49,4 +53,18 @@ public class AuthController {
     public ResponseEntity<List<Auth>> getAll() {
         return ResponseEntity.ok(authService.getAll());
     }
+
+    @PutMapping("/update-phone")
+    @CrossOrigin("*")
+    public ResponseEntity<Boolean> updatePhone(String token, String phone) {
+        return ResponseEntity.ok(authService.updatePhone(token, phone));
+    }
+
+    @PutMapping("/update-email")
+    @CrossOrigin("*")
+    public ResponseEntity<Boolean> updateEmail(String token, String email) {
+        return ResponseEntity.ok(authService.updateEmail(token, email));
+    }
+
+
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class Hotel {
+public class Hotel implements Serializable {
     @Id
     private String id;
     private String name;
@@ -25,4 +26,6 @@ public class Hotel {
     private String addressId;
     private String latitude;
     private String longitude;
+    @Builder.Default
+    private Double point=0.0;
 }

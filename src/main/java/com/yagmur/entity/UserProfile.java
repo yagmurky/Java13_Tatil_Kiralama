@@ -30,15 +30,16 @@ public class UserProfile implements Serializable {
     private String passportExpiry;
     private String trIdNo;
     private String couponCode;
-
-    @Builder.Default
-    private List<Reservation> reservationList= new ArrayList<>();
-    @Builder.Default
-    private List<String> favoriteHotelIds= new ArrayList<>();
-    //private List<String> registeredPersons;
     @Builder.Default
     private EStatus status= EStatus.PENDING;
-
+    @Builder.Default
+    private List<String> reservationListId = new ArrayList<>();
+    @Builder.Default
+    private List<String> favoriteHotelsId=new ArrayList<>();
+    @Builder.Default
+    private List<String> commentId=new ArrayList<>();
+    @Builder.Default
+    private List<UserProfile>registeredPerson=new ArrayList<>();
 
 
 }

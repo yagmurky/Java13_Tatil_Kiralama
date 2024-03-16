@@ -4,14 +4,14 @@ server:
 spring:
     data:
         mongodb:
-            host: localhost
+            host: ${mongo.host}
             port: 27017
             database: TatilKiralamaDB2
-            username: bilgeUser
-            password: bilgeUser*
+            username: bilgeUser #java13mongodbusername ismiyle ortam degiskeni olarak eklenecek
+            password: bilgeUser* #java13mongodbpassword ismiyle ortam degiskeni olarak eklenecek
     mail:
-        username: kirazyagmur7@gmail.com #java13mailusername ismiyle ortam degiskeni olarak eklenecek
-        password: nqsuvsvwjlfptfra #java13mailpassword ismiyle ortam degiskeni olarak eklenecek.
+        username: ${java13mailusername} #java13mailusername ismiyle ortam degiskeni olarak eklenecek
+        password: ${java13mailpassword} #java13mailpassword ismiyle ortam degiskeni olarak eklenecek.
         host: smtp.gmail.com
         port: 587
         properties:
@@ -20,4 +20,8 @@ spring:
                     auth: true
                     starttls:
                         enable: true
+springApp:
+    redis:
+        host: ${redis.host}
+
 
